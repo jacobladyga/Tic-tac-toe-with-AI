@@ -54,7 +54,7 @@ class TicTacToe:
         """
         coords = [k for k, v in self.cells.items() if v == condition]
         return coords[0]
-        
+
     def ai_easy(self, symbol):
         """
         Makes a move by an AI.
@@ -102,7 +102,40 @@ class TicTacToe:
         """     
         if self.grid[self.cells[tuple(coords)]] == " ":
             self.grid[self.cells[tuple(coords)]] = symbol
-            self.display()       
+            self.display()  
+
+    def can_win_row(self, symbol):
+        """
+        Checks if there are 2 symbols in a row and returns coordinates
+        of the empty cell as a tuple.
+        
+        """
+        first_row = self.grid[0:3]
+        second_row = self.grid[3:6]
+        third_row = self.grid[6:9]
+        if first_row.count(symbol) > 1 and " " in first_row:
+            if first_row.index(" ") == 0:
+                return self.get_coords_ai(first_row.index(" ")) 
+            if first_row.index(" ") == 1:
+                return self.get_coords_ai(first_row.index(" "))  
+            if first_row.index(" ") == 2:
+                return self.get_coords_ai(first_row.index(" ")) 
+        elif second_row.count(symbol) > 1 and " " in second_row:
+            if second_row.index(" ") == 0:
+                return self.get_coords_ai(second_row.index(" ") + 3)
+            if second_row.index(" ") == 1:
+                return self.get_coords_ai(second_row.index(" ") + 3) 
+            if second_row.index(" ") == 2:
+                return self.get_coords_ai(second_row.index(" ") + 3) 
+        elif third_row.count(symbol) > 1 and " " in third_row:
+            if third_row.index(" ") == 0:
+                return self.get_coords_ai(third_row.index(" ") + 6)
+            if third_row.index(" ") == 1:
+                return self.get_coords_ai(third_row.index(" ") + 6)
+            if third_row.index(" ") == 2:
+                return self.get_coords_ai(third_row.index(" ") + 6)
+        else:
+            return False     
 
     def check_row(self, symbol):
         """
