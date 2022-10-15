@@ -47,6 +47,14 @@ class TicTacToe:
             " ", " ", " "
             ]
 
+    def get_coords_ai(self, condition):
+        """
+        Return coordinates for AI.
+        
+        """
+        coords = [k for k, v in self.cells.items() if v == condition]
+        return coords[0]
+        
     def ai_easy(self, symbol):
         """
         Makes a move by an AI.
