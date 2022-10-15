@@ -64,33 +64,26 @@ class TicTacToe:
         while True:
             if self.can_win_row("X"):
                 print(msg)
-                print(self.can_win_row("X"))
                 self.update_grid(self.can_win_row("X"), symbol)
-                self.display()
                 break
             elif self.can_win_col("X"):
                 print(msg)
-                print(self.can_win_col("X"))
                 self.update_grid(self.can_win_col("X"), symbol)
                 break
             elif self.can_win_diag("X"):
                 print(msg)
-                print(self.can_win_diag("X"))
                 self.update_grid(self.can_win_diag("X"), symbol)
                 break
             elif self.can_win_row("O"):
                 print(msg)
-                print(self.can_win_row("O"))
                 self.update_grid(self.can_win_row("O"), symbol)
                 break
             elif self.can_win_diag("O"):
                 print(msg)
-                print(self.can_win_diag("O"))
                 self.update_grid(self.can_win_diag("O"), symbol)
                 break
             elif self.can_win_col("O"):
                 print(msg)
-                print(self.can_win_col("O"))
                 self.update_grid(self.can_win_col("O"), symbol)
                 break
             else:
