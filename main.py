@@ -55,18 +55,64 @@ class TicTacToe:
         coords = [k for k, v in self.cells.items() if v == condition]
         return coords[0]
 
+    def ai_medium(self, symbol):
+        """
+        Makes a move by a medium AI.
+        
+        """
+        msg = 'Making move level "medium"'
+        while True:
+            if self.can_win_row("X"):
+                print(msg)
+                print(self.can_win_row("X"))
+                self.update_grid(self.can_win_row("X"), symbol)
+                self.display()
+                break
+            elif self.can_win_col("X"):
+                print(msg)
+                print(self.can_win_col("X"))
+                self.update_grid(self.can_win_col("X"), symbol)
+                break
+            elif self.can_win_diag("X"):
+                print(msg)
+                print(self.can_win_diag("X"))
+                self.update_grid(self.can_win_diag("X"), symbol)
+                break
+            elif self.can_win_row("O"):
+                print(msg)
+                print(self.can_win_row("O"))
+                self.update_grid(self.can_win_row("O"), symbol)
+                break
+            elif self.can_win_diag("O"):
+                print(msg)
+                print(self.can_win_diag("O"))
+                self.update_grid(self.can_win_diag("O"), symbol)
+                break
+            elif self.can_win_col("O"):
+                print(msg)
+                print(self.can_win_col("O"))
+                self.update_grid(self.can_win_col("O"), symbol)
+                break
+            else:
+                random_index = random.randint(0, (len(self.grid) - 1))
+                coords = self.get_coords_ai(random_index)
+                if self.grid[random_index] == " ":
+                    print(msg)
+                    self.update_grid(coords, symbol)
+                    break
+
     def ai_easy(self, symbol):
         """
-        Makes a move by an AI.
+        Makes a move by an easy AI.
         
         """
         while True:
             random_index = random.randint(0, (len(self.grid) - 1))
-            coords = [k for k, v in self.cells.items() if v == random_index]
+            coords = self.get_coords_ai(random_index)
 
             if self.grid[random_index] == " ":
                 print('Making move level "easy"')
-                self.update_grid(coords[0], symbol)
+                self.update_grid(coords, symbol)
                 break
               
     def player_move(self, symbol):
@@ -296,20 +342,31 @@ class TicTacToe:
                 print(error_msg)
     
     def play(self):
+        """
+        Method starts a game.
+        
+        """
         mode = list(self.get_mode())
         self.clear_grid()
         self.display()
         while True:
             if mode[0] == 'user':
                 self.player_move("X")
+            elif mode[0] == 'medium':
+                self.ai_medium("X")
             else:
                 self.ai_easy("X")
+
             if self.check_winner():
                 self.play()
+
             if mode[1] == 'user':
                 self.player_move("O")
+            elif mode[1] == 'medium':
+                self.ai_medium("O")
             else:
                 self.ai_easy("O")
+
             if self.check_winner():
                 self.play()
 
