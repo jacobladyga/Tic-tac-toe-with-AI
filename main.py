@@ -135,7 +135,47 @@ class TicTacToe:
             if third_row.index(" ") == 2:
                 return self.get_coords_ai(third_row.index(" ") + 6)
         else:
-            return False     
+            return False   
+
+    def can_win_col(self, symbol):
+        """
+        Checks if there are 2 symbols in a column. Method takes
+        each cell from each column and adds it to a new list(Each list
+        represents specific column). Method returns the exact coordinates
+        of the empty cell.
+        
+        """
+        col1 = []
+        col2 = []
+        col3 = []
+
+        col1.extend([self.grid[0], self.grid[3], self.grid[6]])
+        col2.extend([self.grid[1], self.grid[4], self.grid[7]])
+        col3.extend([self.grid[2], self.grid[5], self.grid[8]])
+
+        if col1.count(symbol) > 1 and " " in col1:
+            if col1.index(" ") == 0:
+                return self.get_coords_ai(col1.index(" ")) 
+            if col1.index(" ") == 1:
+                return self.get_coords_ai(col1.index(" ") + 2) 
+            if col1.index(" ") == 2:
+                return self.get_coords_ai(col1.index(" ") + 4)
+        elif col2.count(symbol) > 1 and " " in col2:
+            if col2.index(" ") == 0:
+                return self.get_coords_ai(col2.index(" ") + 1)
+            if col2.index(" ") == 1:
+                return self.get_coords_ai(col2.index(" ") + 3)
+            if col2.index(" ") == 2:
+                return self.get_coords_ai(col2.index(" ") + 5)
+        elif col3.count(symbol) > 1 and " " in col3:
+            if col3.index(" ") == 0:
+                return self.get_coords_ai(col3.index(" ") + 2)
+            if col3.index(" ") == 1:
+                return self.get_coords_ai(col3.index(" ") + 4)
+            if col3.index(" ") == 2:
+                return self.get_coords_ai(col3.index(" ") + 6)
+        else:
+            return False  
 
     def check_row(self, symbol):
         """
