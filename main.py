@@ -142,7 +142,7 @@ class TicTacToe:
         Checks if there are 2 symbols in a column. Method takes
         each cell from each column and adds it to a new list(Each list
         represents specific column). Method returns the exact coordinates
-        of the empty cell.
+        of the empty cell or returns False if there are no 2 symbols in the column.
         
         """
         col1 = []
@@ -176,6 +176,37 @@ class TicTacToe:
                 return self.get_coords_ai(col3.index(" ") + 6)
         else:
             return False  
+
+    def can_win_diag(self, symbol):
+        """
+        Checks if there are 2 symbols on the diagonal. Method takes
+        each cell from each diagonal and adds it to a new list(Each list
+        represents specific diagonal). Method returns the exact coordinates
+        of the empty cell or returns False if there are no 2 symbols on the diagonal.
+        
+        """
+        diag1 = []
+        diag2 = []
+
+        diag1.extend([self.grid[0], self.grid[4], self.grid[8]])
+        diag2.extend([self.grid[6], self.grid[4], self.grid[2]])
+
+        if diag1.count(symbol) > 1 and " " in diag1:
+            if diag1.index(" ") == 0:
+                return self.get_coords_ai(diag1.index(" "))
+            elif diag1.index(" ") == 1:
+                return self.get_coords_ai(diag1.index(" ") + 3)
+            elif diag1.index(" ") == 2:
+                return self.get_coords_ai(diag1.index(" ") + 6)
+        elif diag2.count(symbol) > 1 and " " in diag2:
+            if diag2.index(" ") == 0:
+                return self.get_coords_ai(diag2.index(" ") + 6)
+            elif diag2.index(" ") == 1:
+                return self.get_coords_ai(diag2.index(" ") + 3)
+            elif diag2.index(" ") == 2:
+                return self.get_coords_ai(diag2.index(" ")) 
+        else:
+            return False
 
     def check_row(self, symbol):
         """
